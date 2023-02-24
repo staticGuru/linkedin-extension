@@ -1,0 +1,35 @@
+{
+  "name": "Connection.ai",
+  "version": "0.1.0",
+  "description": "Linkedin connection request creations",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://*.linkedin.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.linkedin.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/connect.png"
+        
+      ],
+      "matches": ["https://*.linkedin.com/*"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/connect.png", 
+      "24": "assets/connect.png",
+      "32": "assets/connect.png"
+    },
+    "default_title": "Connection.ai",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 3
+}
