@@ -1,15 +1,12 @@
 (() => {
   let currentLinkedInMembers = [];
   let i = 0;
-  var timer;
   let activeTab;
-  let extensionId = "paiceaoiabijlmkglcpfkncbcpdoepob";
-  let url = "https://www.linkedin.com/*";
   const followClassName =
     "artdeco-button artdeco-button--2 artdeco-button--secondary ember-view";
   const modalClassName =
     "artdeco-button artdeco-button--2 artdeco-button--primary ember-view ml1";
-  const toggleTimer = (timerType) => {};
+
   const startConnectionRequests = async (ReliefCallback, successCallback) => {
     currentLinkedInMembers[0]?.click();
     successCallback();
@@ -23,6 +20,7 @@
       ReliefCallback();
     }
   };
+
   const getCurrectLinkedinMembers = () => {
     let members = document.getElementsByClassName(followClassName);
     for (let member of members) {
@@ -35,7 +33,7 @@
     }
   };
   chrome.runtime.onMessage.addListener((obj, sender, response) => {
-    const { type, value, videoId } = obj;
+    const { type, value } = obj;
 
     if (type === "CONNECT") {
       activeTab = value;
@@ -49,5 +47,4 @@
       });
     }
   });
-  toggleTimer(false);
 })();

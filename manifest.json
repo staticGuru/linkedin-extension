@@ -20,7 +20,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "assets/connect.png"
+        "assets/linkedinAI.png"
         
       ],
       "matches": ["https://*.linkedin.com/*"]
@@ -28,9 +28,9 @@
   ],
   "action": {
     "default_icon": {
-      "16": "assets/connect.png", 
-      "24": "assets/connect.png",
-      "32": "assets/connect.png"
+      "16": "assets/linkedinAI.png", 
+      "24": "assets/linkedinAI.png",
+      "32": "assets/linkedinAI.png"
     },
     "default_title": "Connection.ai",
     "default_popup": "popup.html"
