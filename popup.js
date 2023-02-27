@@ -1,6 +1,5 @@
 import { getActiveTabURL } from "./utils.js";
-var timer;
-var triggerValue = 0;
+let timer;
 const handleTimerActions = async () => {
   const timerValueElement = document.getElementById("timerValue");
   const actionButton = document.getElementById("autoConnectsid");
@@ -12,8 +11,6 @@ const handleTimerActions = async () => {
       type: "CONNECT",
       value: activeTab,
     });
-    if (triggerValue == 10) return clearInterval(timer);
-    triggerValue += 1;
   }, 1100);
 };
 const stopTimer = () => {
@@ -24,14 +21,11 @@ const stopTimer = () => {
   clearInterval(timer);
   timer = null;
 };
-chrome.runtime.onMessage.addListener((obj, sender, response) => {
-  const { type, value, videoId, message } = obj;
 
+chrome.runtime.onMessage.addListener((obj, sender, response) => {
+  const { message } = obj;
   if (message == "STOPTIMER") {
     stopTimer();
-    const actionButton = document.getElementById("autoConnectsid");
-
-    actionButton.innerHTML = "guru";
   }
 });
 document.addEventListener("DOMContentLoaded", async () => {
