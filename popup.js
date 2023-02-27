@@ -25,9 +25,13 @@ const stopTimer = () => {
   timer = null;
 };
 chrome.runtime.onMessage.addListener((obj, sender, response) => {
-  const { type, value, videoId } = obj;
-  if (type === "STOP") {
+  const { type, value, videoId, message } = obj;
+
+  if (message == "STOPTIMER") {
     stopTimer();
+    const actionButton = document.getElementById("autoConnectsid");
+
+    actionButton.innerHTML = "guru";
   }
 });
 document.addEventListener("DOMContentLoaded", async () => {

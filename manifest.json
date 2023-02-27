@@ -11,6 +11,7 @@
     {
       "matches": ["https://*.linkedin.com/*"],
       "js": ["contentScript.js"]
+      
     }
   ],
   "externally_connectable": {
