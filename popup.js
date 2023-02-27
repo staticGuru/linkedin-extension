@@ -1,7 +1,7 @@
 import { getActiveTabURL } from "./utils.js";
 var timer;
 var isTimerRunning = false;
-
+var triggerValue = 0;
 const handleTimerActions = async () => {
   const timerValueElement = document.getElementById("timerValue");
   const actionButton = document.getElementById("autoConnectsid");
@@ -9,13 +9,13 @@ const handleTimerActions = async () => {
   const activeTab = await getActiveTabURL();
   timer = setInterval(() => {
     timerValueElement.innerHTML = parseInt(timerValueElement.innerHTML) + 1;
-   
-
-  chrome.tabs.sendMessage(activeTab.id, {
-    type: "CONNECT",
-    value: activeTab,
-  });
-  }, 1000);
+    chrome.tabs.sendMessage(activeTab.id, {
+      type: "CONNECT",
+      value: activeTab,
+    });
+    triggerValue += 1;
+    if (triggerValue == 10) return clearInterval(timer);
+  }, 1100);
 };
 const stopTimer = () => {
   const timerValueElement = document.getElementById("timerValue");
@@ -23,7 +23,7 @@ const stopTimer = () => {
   timerValueElement.innerHTML = 0;
   actionButton.innerHTML = "Start Connections";
   clearInterval(timer);
-  timer=null;
+  timer = null;
 };
 chrome.runtime.onMessage.addListener((obj, sender, response) => {
   const { type, value, videoId } = obj;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     timerValueElement.innerHTML = 0;
     const actionButton = document.getElementById("autoConnectsid");
     actionButton.addEventListener("click", () => {
-      console.log("calleddddvalue")
+      console.log("calleddddvalue");
       timer ? stopTimer() : handleTimerActions();
     });
     actionButton.innerHTML = "Start Connecting";

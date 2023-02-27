@@ -5,12 +5,12 @@
   let activeTab;
   const followClassName =
     "artdeco-button artdeco-button--2 artdeco-button--secondary ember-view";
+    const modalClassName="artdeco-button artdeco-button--2 artdeco-button--primary ember-view ml1"
   const toggleTimer = (timerType) => {};
   const startConnectionRequests = async(btnNo) => {
 
      currentLinkedInMembers[0]?.click();
-     let isPopupOpened=document.getElementsByClassName("artdeco-button artdeco-button--2 artdeco-button--primary ember-view ml1");
-     console.log("isPopupOpened",isPopupOpened);
+     let isPopupOpened=document.getElementsByClassName(modalClassName);
      if(isPopupOpened.length){
           isPopupOpened[0].click();
      }
@@ -30,34 +30,17 @@
           currentLinkedInMembers.push(member);
      }
     }
-
-    console.log("mbersc",currentLinkedInMembers)
   };
   chrome.runtime.onMessage.addListener((obj, sender, response) => {
     const { type, value, videoId } = obj;
      
     if (type === "CONNECT") {
-      //   currentVideo = videoId;
-      //   toggleTimer();
       activeTab=value;
       if (currentLinkedInMembers.length == 0) {
         getCurrectLinkedinMembers();
       }
       startConnectionRequests(i);
-      // console.log("valuee",obj)
     }
-    //  else if (type === "PLAY") {
-    //   youtubePlayer.currentTime = value;
-    // } else if (type === "DELETE") {
-    //   currentVideoBookmarks = currentVideoBookmarks.filter(
-    //     (b) => b.time != value
-    //   );
-    //   chrome.storage.sync.set({
-    //     [currentVideo]: JSON.stringify(currentVideoBookmarks),
-    //   });
-
-    //   response(currentVideoBookmarks);
-    // }
   });
   toggleTimer(false);
 })();
