@@ -12,8 +12,8 @@ const handleTimerActions = async () => {
       type: "CONNECT",
       value: activeTab,
     });
-    triggerValue += 1;
     if (triggerValue == 10) return clearInterval(timer);
+    triggerValue += 1;
   }, 1100);
 };
 const stopTimer = () => {

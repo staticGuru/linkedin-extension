@@ -16,12 +16,6 @@
      }
      currentLinkedInMembers.shift();
   
-     if(currentLinkedInMembers.length ==0){
-          // chrome.tabs.sendMessage(activeTab.id, {
-          //      type: "STOP",
-          //      value: "guruvignesh",
-          //    });
-     }
   };
   const getCurrectLinkedinMembers = () => {
     let members = document.getElementsByClassName(followClassName);
