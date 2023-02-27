@@ -1,8 +1,16 @@
+body{
+  margin: 0;
+  padding:0;
+  height: 100%;
+} 
 .container {
-     width: 280px;
-     color: #314d3e;
+     width: 300px;
+     background-color: #6743dd;
+     text-align: center;
+     padding: 8px;
+     
    }
-   
+
    .title {
      font-size: 14px;
      font-weight: bold;
@@ -25,7 +33,7 @@
      margin: 5px 5px;
      padding: 3px;
    }
-   
+ 
    
    .autoConnect {
      display: flex;
@@ -51,5 +59,24 @@
    .autoConnect-controls {
      flex: auto;
      text-align: right;
+   }
+
+   .timerContainer{
+    display:"flex";
+    justify-content: center;
+    align-items: center;
+   }
+   .timerValue{
+    font-size:2rem;
+    padding-top:1rem;
+    padding-bottom: 1rem;
+    font-weight:bold;
+   }
+   .autoConnects{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border: 2px solid red;
+    border-radius: .5rem;
+    font-size: 1rem
    }
    
