@@ -10,19 +10,18 @@
   const modalClassName =
     "artdeco-button artdeco-button--2 artdeco-button--primary ember-view ml1";
   const toggleTimer = (timerType) => {};
-  const startConnectionRequests = async (cb) => {
+  const startConnectionRequests = async (ReliefCallback, successCallback) => {
     currentLinkedInMembers[0]?.click();
+    successCallback();
     let isPopupOpened = document.getElementsByClassName(modalClassName);
     if (isPopupOpened.length) {
       isPopupOpened[0].click();
     }
     currentLinkedInMembers.shift();
-    console.log(currentLinkedInMembers.map(m=>m.innerText))
-    if(currentLinkedInMembers.length==0){
-      
-      cb();
+    console.log(currentLinkedInMembers.map((m) => m.innerText));
+    if (currentLinkedInMembers.length == 0) {
+      ReliefCallback();
     }
-   
   };
   const getCurrectLinkedinMembers = () => {
     let members = document.getElementsByClassName(followClassName);
@@ -43,10 +42,11 @@
       if (currentLinkedInMembers.length == 0) {
         getCurrectLinkedinMembers();
       }
-      startConnectionRequests(()=>{
-        chrome.runtime.sendMessage({message: "STOPTIMER"});
+      startConnectionRequests(() => {
+        chrome.runtime.sendMessage({ message: "STOPTIMER" });
+      },() => {
+        chrome.runtime.sendMessage({ message: "SuccessConnection" });
       });
-     
     }
   });
   toggleTimer(false);

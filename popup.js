@@ -1,40 +1,45 @@
 import { getActiveTabURL } from "./utils.js";
 let timer;
+const timerValueElement = document.getElementById("timerValue");
+const actionButton = document.getElementById("autoConnectsid");
 const handleTimerActions = async () => {
-  const timerValueElement = document.getElementById("timerValue");
-  const actionButton = document.getElementById("autoConnectsid");
+  timerValueElement.innerHTML = 0;
   actionButton.innerHTML = "Stop Connections";
   const activeTab = await getActiveTabURL();
   timer = setInterval(() => {
-    timerValueElement.innerHTML = parseInt(timerValueElement.innerHTML) + 1;
     chrome.tabs.sendMessage(activeTab.id, {
       type: "CONNECT",
       value: activeTab,
     });
-  }, 1100);
+  }, 1000);
 };
 const stopTimer = () => {
-  const timerValueElement = document.getElementById("timerValue");
-  const actionButton = document.getElementById("autoConnectsid");
   timerValueElement.innerHTML = 0;
   actionButton.innerHTML = "Start Connections";
-  clearInterval(timer);
+  if(timer) clearInterval(timer);
   timer = null;
 };
+const completeConnections=()=>{
+  actionButton.innerHTML = "Restart";
+  if(timer) clearInterval(timer);
+  timer = null;
+}
 
 chrome.runtime.onMessage.addListener((obj, sender, response) => {
   const { message } = obj;
   if (message == "STOPTIMER") {
-    stopTimer();
+    // stopTimer();
+    completeConnections();
+  }
+  if (message === "SuccessConnection") {
+    timerValueElement.innerHTML = parseInt(timerValueElement.innerHTML) + 1;
   }
 });
 document.addEventListener("DOMContentLoaded", async () => {
   const activeTab = await getActiveTabURL();
 
   if (activeTab.url.includes("linkedin.com/search/results/people")) {
-    const timerValueElement = document.getElementById("timerValue");
     timerValueElement.innerHTML = 0;
-    const actionButton = document.getElementById("autoConnectsid");
     actionButton.addEventListener("click", () => {
       timer ? stopTimer() : handleTimerActions();
     });
