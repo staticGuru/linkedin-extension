@@ -13,6 +13,9 @@
       "js": ["contentScript.js"]
     }
   ],
+  "externally_connectable": {
+    "matches": ["https://*.linkedin.com/*"]
+  },
   "web_accessible_resources": [
     {
       "resources": [

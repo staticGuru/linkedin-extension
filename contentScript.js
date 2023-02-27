@@ -3,6 +3,7 @@
   let i=0;
   var timer;
   let activeTab;
+  let extensionId="paiceaoiabijlmkglcpfkncbcpdoepob"
   const followClassName =
     "artdeco-button artdeco-button--2 artdeco-button--secondary ember-view";
     const modalClassName="artdeco-button artdeco-button--2 artdeco-button--primary ember-view ml1"
@@ -34,6 +35,7 @@
         getCurrectLinkedinMembers();
       }
       startConnectionRequests(i);
+      chrome.runtime.sendMessage(extensionId,"Guruvignesh")
     }
   });
   toggleTimer(false);
