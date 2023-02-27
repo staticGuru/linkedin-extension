@@ -1,6 +1,5 @@
 import { getActiveTabURL } from "./utils.js";
 var timer;
-var isTimerRunning = false;
 var triggerValue = 0;
 const handleTimerActions = async () => {
   const timerValueElement = document.getElementById("timerValue");
@@ -35,21 +34,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   const activeTab = await getActiveTabURL();
 
   if (activeTab.url.includes("linkedin.com/search/results/people")) {
-    //     renderTimer(0);
     const timerValueElement = document.getElementById("timerValue");
     timerValueElement.innerHTML = 0;
     const actionButton = document.getElementById("autoConnectsid");
     actionButton.addEventListener("click", () => {
-      console.log("calleddddvalue");
       timer ? stopTimer() : handleTimerActions();
     });
     actionButton.innerHTML = "Start Connecting";
   } else {
     timer && clearInterval(timer);
     const container = document.getElementsByClassName("container")[0];
-    console.log("CurrentVideo==>", activeTab);
-    container.innerHTML = `<div class="title">This is guru a youtube video page. ${JSON.stringify(
-      activeTab.url
-    )}</div>`;
+    container.innerHTML = `<div class="title">This is not a Linkedin page.</div>`;
   }
 });
