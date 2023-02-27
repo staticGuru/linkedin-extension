@@ -1,82 +1,84 @@
-body{
+body {
   margin: 0;
-  padding:0;
+  padding: 0;
   height: 100%;
-} 
+}
 .container {
-     width: 300px;
-     background-color: #6743dd;
-     text-align: center;
-     padding: 8px;
-     
-   }
+  width: 300px;
+  color: aliceblue;
+  background-color: #6743dd;
+  text-align: center;
+  padding: 8px;
+}
 
-   .title {
-     font-size: 14px;
-     font-weight: bold;
-     padding: 8px;
-   }
-   
-   .textbox {
-     width: 100%;
-     font-size: 12px;
-     margin: 0;
-     padding: 0px 2px;
-   }
-   
-   .textbox:focus {
-     outline: 0;
-     border-color: #66afe9;
-   }
-   
-   .autoConnects {
-     margin: 5px 5px;
-     padding: 3px;
-   }
- 
-   
-   .autoConnect {
-     display: flex;
-     border-bottom-color: #00254d;
-     border-bottom-width: 1px;
-     border-bottom-style: solid;
-     border-radius: 0.8rem;
-     padding: 3px;
-     padding-bottom: 7px;
-     margin-bottom: 7px;
-   }
-   
-   .autoConnect-title {
-     padding-left: 2px;
-   }
-   
-   .autoConnect-controls img {
-     margin: 0 4px;
-     width: 18px;
-     height: 18px;
-     cursor: pointer;
-   }
-   .autoConnect-controls {
-     flex: auto;
-     text-align: right;
-   }
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px;
 
-   .timerContainer{
-    display:"flex";
-    justify-content: center;
-    align-items: center;
-   }
-   .timerValue{
-    font-size:2rem;
-    padding-top:1rem;
-    padding-bottom: 1rem;
-    font-weight:bold;
-   }
-   .autoConnects{
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    border: 2px solid red;
-    border-radius: .5rem;
-    font-size: 1rem
-   }
-   
+  background-color: #00254d;
+  border-radius: 10px;
+}
+
+.textbox {
+  width: 100%;
+  font-size: 12px;
+  margin: 0;
+  padding: 0px 2px;
+}
+
+.textbox:focus {
+  outline: 0;
+  border-color: #66afe9;
+}
+
+.autoConnects {
+  margin: 5px 5px;
+  padding: 3px;
+}
+
+.autoConnect {
+  display: flex;
+  border-bottom-color: #00254d;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-radius: 0.8rem;
+  padding: 3px;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+}
+
+.autoConnect-title {
+  padding-left: 2px;
+}
+
+.autoConnect-controls img {
+  margin: 0 4px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+.autoConnect-controls {
+  flex: auto;
+  text-align: right;
+}
+
+.timerContainer {
+  display: "flex";
+  justify-content: center;
+  align-items: center;
+}
+.timerValue {
+  font-size: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: bold;
+}
+.autoConnects {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border: 2px solid rgb(22, 220, 183);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
