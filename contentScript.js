@@ -7,20 +7,21 @@
   const modalClassName =
     "artdeco-button artdeco-button--2 artdeco-button--primary ember-view ml1";
 
+    //Manipulate the linkedin's class names
   const startConnectionRequests = async (ReliefCallback, successCallback) => {
     currentLinkedInMembers[0]?.click();
-    successCallback();
     let isPopupOpened = document.getElementsByClassName(modalClassName);
     if (isPopupOpened.length) {
       isPopupOpened[0].click();
     }
     currentLinkedInMembers.shift();
-    console.log(currentLinkedInMembers.map((m) => m.innerText));
+    successCallback();
     if (currentLinkedInMembers.length == 0) {
       ReliefCallback();
     }
   };
 
+  //collect all follows members in the linkedin sections
   const getCurrectLinkedinMembers = () => {
     let members = document.getElementsByClassName(followClassName);
     for (let member of members) {
@@ -32,6 +33,8 @@
       }
     }
   };
+
+  //onMessage listeners
   chrome.runtime.onMessage.addListener((obj, sender, response) => {
     const { type, value } = obj;
 
@@ -40,11 +43,15 @@
       if (currentLinkedInMembers.length == 0) {
         getCurrectLinkedinMembers();
       }
-      startConnectionRequests(() => {
-        chrome.runtime.sendMessage({ message: "STOPTIMER" });
-      },() => {
-        chrome.runtime.sendMessage({ message: "SuccessConnection" });
-      });
+      //connnections requests with callbacks
+      startConnectionRequests(
+        () => {
+          chrome.runtime.sendMessage({ message: "STOPTIMER" });
+        },
+        () => {
+          chrome.runtime.sendMessage({ message: "SuccessConnection" });
+        }
+      );
     }
   });
 })();

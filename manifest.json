@@ -4,9 +4,7 @@
   "description": "Linkedin connection request creations",
   "permissions": ["storage", "tabs"],
   "host_permissions": ["https://*.linkedin.com/*"],
-  "background": {
-    "service_worker": "background.js"
-  },
+
   "content_scripts": [
     {
       "matches": ["https://*.linkedin.com/*"],
