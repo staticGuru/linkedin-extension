@@ -1,24 +1,34 @@
 (() => {
   let currentLinkedInMembers = [];
-  let i = 0;
+  let i = -1;
   let activeTab;
   const followClassName =
     "artdeco-button artdeco-button--2 artdeco-button--secondary ember-view";
   const modalClassName =
     "artdeco-button artdeco-button--2 artdeco-button--primary ember-view ml1";
-
+    const handleOverlay=()=>{
+     
+    }
+    //Recursively call the functions
+const syntheticCallbacks= async (index,ReliefCallback, successCallback)=>{
+  if (index == 10) {
+    ReliefCallback();
+  }
+  let isPopupOpened = document.getElementsByClassName(modalClassName);
+  if (isPopupOpened?.length) {
+    isPopupOpened[0].click();
+  }else{
+    await currentLinkedInMembers[index]?.click();
+    successCallback();
+    if(currentLinkedInMembers[index]?.innerText ==="Connect" || currentLinkedInMembers[index]?.innerText == "Follow"){
+      syntheticCallbacks(index,ReliefCallback, successCallback)
+    }
+  }
+}
     //Manipulate the linkedin's class names
   const startConnectionRequests = async (ReliefCallback, successCallback) => {
-    currentLinkedInMembers[0]?.click();
-    let isPopupOpened = document.getElementsByClassName(modalClassName);
-    if (isPopupOpened.length) {
-      isPopupOpened[0].click();
-    }
-    currentLinkedInMembers.shift();
-    successCallback();
-    if (currentLinkedInMembers.length == 0) {
-      ReliefCallback();
-    }
+    i +=1;
+    return await syntheticCallbacks(i,ReliefCallback, successCallback);
   };
 
   //collect all follows members in the linkedin sections
@@ -49,7 +59,7 @@
           chrome.runtime.sendMessage({ message: "STOPTIMER" });
         },
         () => {
-          chrome.runtime.sendMessage({ message: "SuccessConnection" });
+          chrome.runtime.sendMessage({ message: "SuccessConnection",value:i});
         }
       );
     }

@@ -15,7 +15,7 @@ const handleTimerActions = async () => {
       type: "CONNECT",
       value: activeTab,
     });
-  }, 1000);
+  }, 3000);
 };
 
 //clear the timer interval
@@ -35,12 +35,12 @@ const completeConnections=()=>{
 
 //onMessage listeners
 chrome.runtime.onMessage.addListener((obj, sender, response) => {
-  const { message } = obj;
+  const { message,value } = obj;
   if (message == "STOPTIMER") {
     completeConnections();
   }
   if (message === "SuccessConnection") {
-    timerValueElement.innerHTML = parseInt(timerValueElement.innerHTML) + 1;
+    timerValueElement.innerHTML = value;
   }
 });
 
